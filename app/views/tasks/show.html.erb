@@ -1,6 +1,11 @@
-<h1>Task <%= @task.id %></h1>
+<h1><%= @task.description %></h1>
 
 <p>Description: <%= @task.description %></p>
 <p>Due Date: <%= @task.due_date %></p>
 
+<p><a href="/tasks/<%= @task.id %>/edit">Update task</a></p>
+<p><a href="/tasks/<%= @task.id %>"
+      data-confirm="You sure?"
+      data-method="delete"
+      rel="nofollow">Delete</a></p>
 <p><a href="/tasks">Return to task listing</a></p>
