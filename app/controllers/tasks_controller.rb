@@ -2,8 +2,17 @@ class TasksController < ApplicationController
   def index
     @tasks = Task.all
     @task = Task.new
+    #@undone_task = Task.find(params[:id])
     render('tasks/index.html.erb')
   end
+
+  def done
+    @undone_task = Task.find(params[:id])
+    @undone_task.update(:done => true)
+    render('tasks/done.html.erb')
+  end
+
+  #Spyder Monkee fixed our done!!!!
 
   def show
     @task = Task.find(params[:id])
@@ -12,7 +21,8 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new( :description => params[:description],
-                      :due_date => params[:due_date])
+                      :due_date => params[:due_date],
+                      :done => false)
     if @task.save
       render('tasks/success.html.erb')
     else
@@ -29,7 +39,8 @@ class TasksController < ApplicationController
   def update
     @task = Task.find(params[:id])
     if @task.update(:description => params[:description],
-                    :due_date => params[:due_date])
+                    :due_date => params[:due_date],
+                    :done => params[:done])
       render('tasks/success.html.erb')
     else
       render('tasks/edit.html.erb')
