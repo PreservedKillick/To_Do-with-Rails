@@ -1,0 +1,8 @@
+<h1>Tasks To Do</h1>
+
+<ul>
+  <% @tasks.each do |task| %>
+    <li><a href="/tasks/<%= task.id %>"><%= task.description %></a></li>
+  <% end %>
+</ul>
+
